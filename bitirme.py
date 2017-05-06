@@ -2,6 +2,10 @@
 
 import random
 
+def matris_yazdir(matris):
+   for i in range(0,len(matris)):
+       print(matris[i])
+
 konum = [[0,1,0,0,0,0,0],
 	 [0,2,1,2,0,2,0],
 	 [0,0,0,1,0,0,0],
@@ -9,10 +13,8 @@ konum = [[0,1,0,0,0,0,0],
          [0,1,0,0,0,0,0],
          [0,2,1,2,0,2,0],
          [0,0,0,0,0,1,0]]
-def matris_yazdir():
-    for i in range (0,7):
-        print(konum[i])
-matris_yazdir()
+
+matris_yazdir(konum)
 #-------------------------------------------------------------------#
 
 yangin_ym = [[0,0,0],
@@ -32,9 +34,7 @@ def yangin_yatay():
             j += 1
 	i += 1
 	j = 0
-    for k in range (0,len(yangin_ym)):
-        print(yangin_ym[k])
-
+    matris_yazdir(yangin_ym)    
 print("\n")
 yangin_yatay()
 #------------------------------------------------------------------#
@@ -54,8 +54,7 @@ def yangin_dikey():
             j += 1
 	i += 1
 	j = 0
-    for k in range (0,len(yangin_dm)):
-        print(yangin_dm[k])
+    matris_yazdir(yangin_dm) 
 
 print("\n")
 yangin_dikey()
@@ -80,8 +79,7 @@ def sicaklik_duman_yatay():
 		   scdm_ym[x-1][y]+=0.25
 		if (x+1 <= len(scdm_ym)-1):
                    scdm_ym[x+1][y]+=0.25
-    for k in range (0,len(scdm_ym)):
-        print(scdm_ym[k])
+    matris_yazdir(scdm_ym) 
 
 print("yatay sicaklik/duman matrisi:\n")
 sicaklik_duman_yatay()
@@ -105,8 +103,7 @@ def sicaklik_duman_dikey():
 		   scdm_dm[x-1][y]+=0.25
 		if (x+1 <= len(scdm_dm)-1):
                    scdm_dm[x+1][y]+=0.25
-    for k in range (0,len(scdm_dm)):
-        print(scdm_dm[k])
+    matris_yazdir(scdm_dm) 
 
 print("dikey sicaklik/duman matrisi:\n")
 sicaklik_duman_dikey()
@@ -119,8 +116,7 @@ isik_ym = [[1,1,1],
 	   [1,1,1]]
 
 print("yatay ışık matrisi:\n")
-for k in range (0,len(isik_ym)):
-    print(isik_ym[k])
+matris_yazdir(isik_ym)
 print("\n")
 #------------------------------------------------------------------#
 
@@ -129,13 +125,47 @@ isik_dm = [[1,0,0,1],
 	   [1,0,0,1]]
 
 print("dikey ışık matrisi:\n")
-for k in range (0,len(isik_dm)):
-    print(isik_dm[k])
+matris_yazdir(isik_dm) 
 print("\n")
 #------------------------------------------------------------------#
 
+mesafe = 13
+
+result_ym = [[0,0,0],
+             [0,0,0],
+             [0,0,0],
+	     [0,0,0]]
+
+def result_yatay():
+    global result_ym
+    for x in range(0,len(result_ym)):
+        for y in range(0,len(result_ym[0])):
+	    result_ym[x][y] = float(2*mesafe + (scdm_ym[x][y]/mesafe) - (1.5*isik_ym[x][y]))
+
+result_yatay()
+print("yatay ara sonuç  matrisi:\n")
+matris_yazdir(result_ym)
+print("\n")
+#------------------------------------------------------------------#
+
+result_dm = [[0,0,0,0],
+	     [0,0,0,0],
+	     [0,0,0,0]]
 
 
+def result_dikey():
+    global result_dm
+    for x in range(0,len(result_dm)):
+	for y in range(0,len(result_dm[0])):
+	    result_dm[x][y] = float(2*mesafe + (scdm_dm[x][y]/mesafe) - (1.5*isik_dm[x][y]))
+
+result_dikey()
+print("Dikey Ara Sonuç Matrisi:")
+matris_yazdir(result_dm)
+print("\n")
+
+#-----------------------------------------------------------EOF-:)--#
+ 
 
 
 
