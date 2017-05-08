@@ -38,14 +38,14 @@ def parcacik():
     plt.ion()
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    ax.grig(True)
+    ax.grid(True)
 
     while(iterasyon < 30):
         for i in range(0,num_parcacik):
             if (fonksiyon(p[0][i], p[1][i]))< (fonksiyon(pbest[0][i], pbest[1][i])):
                 pbest[0][i] = p[0][i]
                 pbest[1][i] = p[1][i]
-            if (fonksiyon(pbest[0][i], pbest[1][i]))< (fonksiyon(gbest[0][i], gbest[1][i])):
+            if (fonksiyon(pbest[0][i], pbest[1][i]))< (fonksiyon(gbest[0][0], gbest[0][1])):
                 gbest[0][0] = p[0][i]
                 gbest[0][1] = p[1][i]
 
@@ -88,7 +88,7 @@ def hiz_guncellemesi(num_parcacik, p, pbest, gbest, v):
 def fonksiyon(result_ym, result_dm):
     matrix_and_neo.result_yatay()
     matrix_and_neo.result_dikey()
-    return result_ym, result_dm
+    return result_ym + result_dm
 
 def karsilastirma(pbest, error, num_parcacik):
     for i in range (1, num_parcacik):
