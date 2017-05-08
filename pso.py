@@ -40,7 +40,7 @@ def parcacik():
     ax = fig.add_subplot(111)
     ax.grid(True)
 
-    while(iterasyon < 30):
+    while(iterasyon < 50):
         for i in range(0,num_parcacik):
             if (fonksiyon(p[0][i], p[1][i]))< (fonksiyon(pbest[0][i], pbest[1][i])):
                 pbest[0][i] = p[0][i]
@@ -55,11 +55,11 @@ def parcacik():
 
             print ( "iterasyon: {} ---------- gbest:{} ".format(iterasyon, gbest))
 
-            line1 = ax.plot(p[0],p[1],'error+')
-            line2 = ax.plot(gbest[0][0], gbest[0][1], 'g*')
+            line1 = ax.plot(p[0],p[1])
+            line2 = ax.plot(gbest[0][0], gbest[0][1])
 
-            ax.set_xlim(-3,3)
-            ax.set_ylim(-3,3)
+            ax.set_xlim(0,7)
+            ax.set_ylim(0,7)
 
             fig.canvas.draw()
 
