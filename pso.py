@@ -7,7 +7,7 @@ def parcacik():
     #---------------------degiskenler ve ilk deger atamaları----------------------
 
     num_dimension = 2
-    num_parcacik = 15
+    num_parcacik = 16
 
     p = np.empty((num_dimension, num_parcacik))
     v = np.empty((num_dimension, num_parcacik))
@@ -18,7 +18,7 @@ def parcacik():
 
     for i in range(0,num_dimension):
         for j in range(0,num_parcacik):
-            pbest[i][j] = rand.randint(-7,7)
+            pbest[i][j] = rand.randint(-8,8)
             p[i][j] = pbest[i][j]
             v[i][j] = 0
 
@@ -49,7 +49,7 @@ def parcacik():
                 gbest[0][0] = p[0][i]
                 gbest[0][1] = p[1][i]
 
-            hiz_guncellemesi(num_parcacik, p, pbest, gbest, v)
+                hiz_guncellemesi(num_parcacik, p, pbest, gbest, v)
 
             iterasyon +=1
 
@@ -79,10 +79,10 @@ def hiz_guncellemesi(num_parcacik, p, pbest, gbest, v):
 
     for i in range(0, num_parcacik):
         #--------- x ekseni icin hız guncellemesi
-        v[0][i] = w*v[0][i] + c1*r1*(pbest[0][i]- p[0][i]) +c2**r1*(gbest[0][0]-p[0][i])
+        v[0][i] = w*v[0][i] + c1*r1*(pbest[0][i]- p[0][i]) + c2*r2*(gbest[0][0]-p[0][i])
         p[0][i] = p[0][i] + v[0][i]
         # -------- y ekseni icin hız guncellemesi
-        v[1][i] = w * v[1][i] + c1 * r1 * (pbest[1][i] - p[1][i]) + c2 ** r1 * (gbest[0][1] - p[1][i])
+        v[1][i] = w * v[1][i] + c1 * r1 * (pbest[1][i] - p[1][i]) + c2 * r1 * (gbest[0][1] - p[1][i])
         p[1][i] = p[1][i] + v[1][i]
 
 def fonksiyon(result_ym, result_dm):
