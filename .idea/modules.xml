@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$USER_HOME$/Opamp_Circuit_Calculator/.idea/Opamp_Circuit_Calculator.iml" filepath="$USER_HOME$/Opamp_Circuit_Calculator/.idea/Opamp_Circuit_Calculator.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Particle_Swarm_Optimization.iml" filepath="$PROJECT_DIR$/.idea/Particle_Swarm_Optimization.iml" />
     </modules>
   </component>
