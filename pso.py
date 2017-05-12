@@ -21,13 +21,13 @@ def parcacik():
     v = np.empty((num_dimension, num_parcacik))
 
     pbest = np.empty((num_dimension, num_parcacik))
-    gbest = np.empty((1, 2))
+    gbest = np.empty((1, 7))
     error = np.empty((num_parcacik))
 
 
     for i in range (0,num_dimension):
         for j in range(0,num_parcacik):
-            pbest[i][j] = rand.randint(0, num_dimension)
+            pbest[i][j] = rand.randint(-12, 12)
             p[i][j] = pbest[i][j]
             v[i][j] = 0
 
@@ -56,14 +56,14 @@ def parcacik():
                 hiz_guncellemesi(num_parcacik, p, pbest, gbest, v)
 
         iterasyon += 1
+        print("iterasyon: {} ------- gbest:{}".format(iterasyon,gbest))
+        #print('iterasyon: ' + str(iterasyon) + ' - - - Gbest: ' +str(gbest))
 
-        print("iterasyon: {} ---------- gbest:{} ".format(iterasyon, gbest))
+        line1 = ax.plot(p[0], p[1],'r+')
+        line2 = ax.plot(gbest[0][0], gbest[0][1], 'g*')
 
-        line1 = ax.plot(p[0], p[1])
-        line2 = ax.plot(gbest[0][0], gbest[0][1])
-
-        ax.set_xlim(0, 7)
-        ax.set_ylim(0, 7)
+        ax.set_xlim(-15, 20)
+        ax.set_ylim(-15, 20)
 
         fig.canvas.draw()
 
@@ -86,9 +86,9 @@ def func(x,y):
 
 
 def hiz_guncellemesi(num_parcacik, p, pbest, gbest, v):
-        w = 0.1
+        w = 0.7
         c1 = 2
-        c2 = 1.50
+        c2 = 2
 
         r1 = rand.random()
         r2 = rand.random()
@@ -125,5 +125,3 @@ def uygunluk_fonk(pbest, error, num_parcacik):
 
 if __name__== '__main__':
     parcacik()
-
-
