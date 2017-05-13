@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 import random
 
 def matris_yazdir(matris):
@@ -26,9 +25,9 @@ def yangin_yatay():
     global yangin_ym
     i = 0
     j = 0
-  
+
     print("yatay yangin matrisi:\n")
-    for x in range(0,len(konum),2):	
+    for x in range(0,len(konum),2):
         for y in range(1,len(konum[0]),2):
             yangin_ym[i][j] = konum[x][y]
             j += 1
@@ -54,7 +53,7 @@ def yangin_dikey():
             j += 1
         i += 1
         j = 0
-    matris_yazdir(yangin_dm) 
+    matris_yazdir(yangin_dm)
 
 print("\n")
 yangin_dikey()
@@ -79,13 +78,13 @@ def sicaklik_duman_yatay():
                     scdm_ym[x-1][y]+=0.25
                 if (x+1 <= len(scdm_ym)-1):
                     scdm_ym[x+1][y]+=0.25
-    matris_yazdir(scdm_ym) 
+    matris_yazdir(scdm_ym)
 
 print("yatay sicaklik/duman matrisi:\n")
 sicaklik_duman_yatay()
 print("\n")
 #------------------------------------------------------------------#
-		
+
 scdm_dm = [[0,0,0,0],
 	       [0,0,0,0],
 	       [0,0,0,0]]
@@ -103,12 +102,12 @@ def sicaklik_duman_dikey():
                    scdm_dm[x-1][y]+=0.25
                 if (x+1 <= len(scdm_dm)-1):
                            scdm_dm[x+1][y]+=0.25
-    matris_yazdir(scdm_dm) 
+    matris_yazdir(scdm_dm)
 
 print("dikey sicaklik/duman matrisi:\n")
 sicaklik_duman_dikey()
 print("\n")
-#------------------------------------------------------------------#	
+#------------------------------------------------------------------#
 
 isik_ym = [[1,1,1],
 	       [0,0,0],
@@ -125,7 +124,7 @@ isik_dm = [[1,0,0,1],
 	       [1,0,0,1]]
 
 print("dikey ışık matrisi:\n")
-matris_yazdir(isik_dm) 
+matris_yazdir(isik_dm)
 print("\n")
 #------------------------------------------------------------------#
 
@@ -149,9 +148,8 @@ print("\n")
 #------------------------------------------------------------------#
 
 result_dm = [[0,0,0,0],
-	         [0,0,0,0],
-	         [0,0,0,0]]
-
+             [0,0,0,0],
+             [0,0,0,0]]
 
 def result_dikey():
     global result_dm
@@ -164,8 +162,8 @@ print("Dikey Ara Sonuç Matrisi:")
 matris_yazdir(result_dm)
 print("\n")
 
-#-----------------------------------------------------------EOF-:)--#
- 
+#----------------------------------------------------------EOF-:)--#
+
 
 
 
