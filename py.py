@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import matrix_and_neo as mn
 #import matplotlib.pyplot as plt
-import numpy as np
-import random as rand
 
 def matrix():
     i = 0
@@ -25,120 +23,143 @@ def matrix():
     mn.matris_yazdir(mn.konum)
 
 def parcacik():
+    global x
+    global y
     matrix()
-    distance = []
     best = []
-    visited = [[]]
-    c = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
+    visited = [[0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0]]
+    distance = 0
+    startnode = int(input("Lütfen bulunduğunuz konumu ifade eden, 1-16 arasında bir konum  değeri giriniz:"))
 
-    startnode = raw_input("Lütfen bulunduğunuz konumu ifade eden, 1-16 arasında bir konum  değeri giriniz:")
-
-    if startnode == "1":
-        i=0
-        j=6
-    elif startnode == "2":
-        i=2
-        j=6
-    elif startnode == "3":
-        i=4
-        j=6
-    elif startnode == "4":
-        i=6
-        j=6
-    elif startnode == "5":
-        i=0
-        j=4
-    elif startnode == "6":
-        i=2
-        j=4
-    elif startnode == "7":
-        i=4
+    if(startnode == 1):
+        x=0
+        y=6
+    elif(startnode == 2):
+        x=2
+        y=6
+    elif(startnode == 3):
+        x=4
+        y=6
+    elif(startnode == 4):
+        x=6
+        y=6
+    elif(startnode == 5):
+        x=0
+        y=4
+    elif(startnode == 6):
+        x=2
+        y=4
+    elif(startnode == 7):
+        x=4
         J=4
-    elif startnode == "8":
-        i=6
-        j=4
-    elif startnode == "9":
-        i=0
-        j=2
-    elif startnode == "10":
-        i=2
-        j=2
-    elif startnode == "11":
-        i=4
-        j=2
-    elif startnode == "12":
-        i=6
-        j=2
-    elif startnode == "13":
-        i=0
-        j=0
-    elif startnode == "14":
-        i=2
-        j=0
-    elif startnode == "15":
-        i=4
-        j=0
-    elif startnode == "16":
-        i=6
-        j=0
+    elif(startnode == 8):
+        x=6
+        y=4
+    elif(startnode == 9):
+        x=0
+        y=2
+    elif(startnode == 10):
+        x=2
+        y=2
+    elif(startnode == 11):
+        x=4
+        y=2
+    elif(startnode == 12):
+        x=6
+        y=2
+    elif(startnode == 13):
+        x=0
+        y=0
+    elif(startnode == 14):
+        x=2
+        y=0
+    elif(startnode == 15):
+        x=4
+        y=0
+    elif(startnode == 16):
+        x=6
+        y=0
 
-    for i in range(0,16):
-        for j in range(0,16):
-            distance = 0
-            best = mn.konum[i][j]
-            visited[i][j] = 1
-
-            if(mn.konum[i][j] == 0):
+    for x in range(x,7):
+        for y in range(y,7):
+            if(mn.konum[x][y] == 0):
+                best.append(startnode)
+                visited[x][y] = 1
                 #---------------------------------------------------------------ortadaki düğümler için------------------
-                if((mn.konum[i+1][j] < mn.konum[i-1][j]) and (mn.konum[i+1][j] < 13.0) and (i>0) and (i<7) and (j>0)and(j<7) and (visited[i+1][j]==0)):
-                    distance += mn.konum[i+1][j]
-                    visited[i+1][j] = 1
-                    i+=1
-                elif((mn.konum[i-1][j] < mn.konum[i+1][j]) and (mn.konum[i-1][j] < 13.0) and (i>0) and (i<7) and (j>0)and(j<7) and (visited[i-1][j]==0)):
-                    distance += mn.konum[i-1][j]
-                    visited[i-1][j] = 1
-                    i-=1
-                elif((mn.konum[i][j+1] < mn.konum[i][j-1]) and (mn.konum[i][j+1] < 13.0) and (i>0) and (i<7) and (j>0)and(j<7) and (visited[i][j+1]==0)):
-                    distance += mn.konum[i][j+1]
-                    visited[i][j+1] = 1
-                    j+=1
-                elif((mn.konum[i][j-1] < mn.konum[i][j+1]) and (mn.konum[i][j-1] < 13.0) and (i>0) and (i<7) and (j>0)and(j<7) and (visited[i][j-1]==0)):
-                    distance += mn.konum[i][j-1]
-                    visited[i][j-1] = 1
-                    j-=1
 
-                elif((mn.konum[i+1][j] < mn.konum[i][j-1]) and (mn.konum[i+1][j] < 13.0) and (i>0) and (i<7) and (j>0)and(j<7) and (visited[i+1][j]==0)):
-                    distance += mn.konum[i+1][j]
-                    visited[i+1][j] = 1
-                    i+=1
-                elif((mn.konum[i][j-1] < mn.konum[i+1][j]) and (mn.konum[i][j-1] < 13.0) and (i>0) and (i<7) and (j>0)and(j<7) and (visited[i][j-1]==0)):
-                    distance += mn.konum[i][j-1]
-                    visited[i][j-1] = 1
-                    j-=1
-                elif((mn.konum[i-1][j] < mn.konum[i][j-1]) and (mn.konum[i-1][j] < 13.0) and (i>0) and (i<7) and (j>0)and(j<7) and (visited[i-1][j]==0)):
-                    distance += mn.konum[i-1][j]
-                    visited[i-1][j] = 1
-                    i-=1
-                elif((mn.konum[i][j-1] < mn.konum[i-1][j]) and (mn.konum[i][j-1] < 13.0) and (i>0) and (i<7) and (j>0)and(j<7) and (visited[i][j-1]==0)):
-                    distance += mn.konum[i][j-1]
-                    visited[i][j-1] = 1
-                    j-=1
+                if(((x==0) or (x+1<7)) and ((y==0) or (y+1<7)) and (mn.konum[x+1][y] < 13.0)  and (visited[x+1][y]==0) and (mn.konum[x+1][y] < mn.konum[x-1][y])):
+                    distance += (mn.konum[x+1][y])
+                    best.append(startnode+1)
+                    visited[x+1][y] = 1
+                    x+=1
+                elif((x>0) and (x+1<7) and (y>0) and (y+1<7) and (mn.konum[x-1][y] < 13.0) and (visited[x-1][y]==0) and (mn.konum[x-1][y] < mn.konum[x+1][y])):
+                    distance += mn.konum[x-1][y]
+                    best.append(startnode-1)
+                    visited[x-1][y] = 1
+                    x-=1
+                elif((x>0) and (x+1<7) and (y>0) and (y+1<7) and (mn.konum[x][y+1] < 13.0) and (visited[x][y+1]==0) and (mn.konum[x][y+1] < mn.konum[x][y-1])):
+                    distance += mn.konum[x][y+1]
+                    best.append(startnode-4)
+                    visited[x][y+1] = 1
+                    y+=1
+                elif((x>0) and (x+1<7) and (y>0) and (y+1<7) and (mn.konum[x][y-1] < 13.0) and (visited[x][y-1]==0) and (mn.konum[x][y-1] < mn.konum[x][y+1])):
+                    distance += mn.konum[x][y-1]
+                    best.append(startnode+4)
+                    visited[x][y-1] = 1
+                    y-=1
+
+#------------------------------------------------------------------------------------------------------------
+                elif((x>0) and (x+1<7) and (y>0) and (y+1<7) and (mn.konum[x+1][y] < 13.0) and (visited[x+1][y]==0) and (mn.konum[x+1][y] < mn.konum[x][y-1])):
+                    distance += mn.konum[x+1][y]
+                    best.append(startnode+1)
+                    visited[x+1][y] = 1
+                    x+=1
+                elif((x>0) and (x+1<7) and (y>0) and (y+1<7) and (mn.konum[x][y-1] < 13.0) and (visited[x][y-1]==0) and (mn.konum[x][y-1] < mn.konum[x+1][y])):
+                    distance += mn.konum[x][y-1]
+                    best.append(startnode+4)
+                    visited[x][y-1] = 1
+                    y-=1
+                elif((x>0) and (x+1<7) and (y>0) and (y+1<7) and (mn.konum[x+1][y] < 13.0) and (visited[x+1][y]==0) and (mn.konum[x+1][y] < mn.konum[x][y+1])):
+                    distance += mn.konum[x+1][y]
+                    best.append(startnode+1)
+                    visited[x+1][y] = 1
+                    x += 1
+                elif((x>0) and (x+1<7) and (y>0) and (y+1<7) and (mn.konum[x][y+1] < 13.0) and (visited[x][y+1]==0) and (mn.konum[x][y+1] < mn.konum[x+1][y])):
+                    distance += mn.konum[x][y+1]
+                    best.append(startnode-4)
+                    visited[x][y+1] = 1
+                    y -= 1
+                elif((x>0) and (x+1<7) and (y>0) and (y+1<7) and (mn.konum[x-1][y] < 13.0) and (visited[x-1][y]==0) and (mn.konum[x-1][y] < mn.konum[x][y-1])):
+                    distance += mn.konum[x-1][y]
+                    best.append(startnode-1)
+                    visited[x-1][y] = 1
+                    x-=1
+                elif((x>0) and (x+1<7) and (y>0) and (y+1<7) and (mn.konum[x][y-1] < 13.0) and (visited[x][y-1]==0) and (mn.konum[x][y-1] < mn.konum[x-1][y])):
+                    distance += mn.konum[x][y-1]
+                    best.append(startnode+4)
+                    visited[x][y-1] = 1
+                    y-=1
+                elif((x>0) and (x+1<7) and (y>0) and (y+1<7) and (mn.konum[x-1][y] < 13.0) and (visited[x-1][y]==0) and (mn.konum[x-1][y] < mn.konum[x][y+1])):
+                    distance += mn.konum[x-1][y]
+                    best.append(startnode-1)
+                    visited[x-1][y] = 1
+                    x -= 1
+                elif((x>0) and (x+1<7) and (y>0) and (y+1<7) and (mn.konum[x][y+1] < 13.0) and (visited[x][y+1]==0) and (mn.konum[x][y+1] < mn.konum[x-1][y])):
+                    distance += mn.konum[x][y+1]
+                    best.append(startnode-4)
+                    visited[x][y+1] = 1
+                    y -= 1
                 else:
                     break
+
+    print(best)
+    print(distance)
+
 
 parcacik()
