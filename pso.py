@@ -13,7 +13,7 @@ def parcacik():
     ax.grid(True)
 
     num_parcacik = 24
-    num_dimension = 7
+    num_dimension = 2
     iterasyon = 0
 
     p = np.empty((num_dimension, num_parcacik))
