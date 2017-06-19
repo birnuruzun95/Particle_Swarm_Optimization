@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import matrix_and_neo as mn
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 def matrix():
     i = 0
@@ -29,12 +29,16 @@ visited = [[0, 0, 0, 0, 0, 0, 0],
            [0, 0, 0, 0, 0, 0, 0],
            [0, 0, 0, 0, 0, 0, 0],
            [0, 0, 0, 0, 0, 0, 0]]
-best = []
-distance = 0
+pbest = []
+gbest = []
+listx = []
+listy = []
 def bul(x,y):
-    global  visited
-    global best
+    global visited
+    global pbest
     global distance
+    global listx
+    global listy
 
     if ((x == 6) and (y == 0)):
         mn.matris_yazdir(visited)
@@ -44,12 +48,33 @@ def bul(x,y):
             for j in range(0, 7):
                 if (visited[i][j] == 1):
                     distance += (mn.konum[i][j])
+                    listx.insert(i, i)
+                    listx.insert(j, j)
                 else:
                     distance += 0
-        best.append(distance)
+        pbest.append(distance)
         print(distance)
         print("\n")
+
+        """if (gbest == distance):
+            plt.ion()
+            fig = plt.figure()
+            ax = fig.add_subplot(111)
+            ax.grid(True)
+            plt.hold(True)
+            line = ax.plot(listx, listy, label="en kısa yol")
+
+            ax.step(listx, listy)
+            ax.legend()
+            ax.set_xlim(0, 7)
+            ax.set_ylim(0, 7)
+
+            fig.canvas.draw()
+            ax.clear()
+            ax.grid(True)
+            plt.show(block=True)"""
         return x,y
+
     if ((x+1 < 7) and (visited[x+1][y] == 0) and (mn.konum[x+1][y]<13.0) and (mn.konum[x+1][y] != 2)):
         visited[x+1][y] = 1
         bul(x+1, y)
@@ -70,6 +95,8 @@ def bul(x,y):
 def parcacik():
     global x
     global y
+    global pbest
+    global gbest
 
     matrix()
 
@@ -132,37 +159,17 @@ def parcacik():
                 bul(x,y)
                 break
         break
-parcacik()
+    for i in range(0, len(pbest) - 1):  # buradaki parçacık sayısı 8
+        if (pbest[i] > pbest[i + 1]):
+            temp = pbest[i]
+            pbest[i] = pbest[i + 1]
+            pbest[i + 1] = temp
+    gbest = pbest[0]
+    # pbest[i] ye ait olan visited değerini çizdirsin
+    print("gbest: {}".format(gbest))
+    print("pbest: {}".format(pbest))
 
-"""        if (visited[0][6] == 1):
-            best.append(16)
-        elif (visited[0][4] == 1):
-            best.append(15)
-        elif (visited[0][2] == 1):
-            best.append(14)
-        elif (visited[0][0] == 1):
-            best.append(13)
-        elif (visited[2][6] == 1):
-            best.append(12)
-        elif (visited[2][4] == 1):
-            best.append(11)
-        elif (visited[2][2] == 1):
-            best.append(10)
-        elif (visited[2][0] == 1):
-            best.append(9)
-        elif (visited[4][6] == 1):
-            best.append(8)
-        elif (visited[4][4] == 1):
-            best.append(7)
-        elif (visited[4][2] == 1):
-            best.append(6)
-        elif (visited[4][0] == 1):
-            best.append(5)
-        elif (visited[6][6] == 1):
-            best.append(4)
-        elif (visited[6][4] == 1):
-            best.append(3)
-        elif (visited[6][2] == 1):
-            best.append(2)
-        elif (visited[6][0] == 1):
-            best.append(1)"""
+
+
+
+parcacik()
