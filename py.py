@@ -29,16 +29,26 @@ visited = [[0, 0, 0, 0, 0, 0, 0],
            [0, 0, 0, 0, 0, 0, 0],
            [0, 0, 0, 0, 0, 0, 0],
            [0, 0, 0, 0, 0, 0, 0]]
-
-
-def bul(x, y):
+best = []
+distance = 0
+def bul(x,y):
     global  visited
-
+    global best
+    global distance
 
     if ((x == 6) and (y == 0)):
         mn.matris_yazdir(visited)
-        print("\n\n")
-       # visited[x][y] = 0
+        print("\n")
+        distance=0
+        for i in range(0, 7):
+            for j in range(0, 7):
+                if (visited[i][j] == 1):
+                    distance += (mn.konum[i][j])
+                else:
+                    distance += 0
+        best.append(distance)
+        print(distance)
+        print("\n")
         return x,y
     if ((x+1 < 7) and (visited[x+1][y] == 0) and (mn.konum[x+1][y]<13.0) and (mn.konum[x+1][y] != 2)):
         visited[x+1][y] = 1
@@ -57,18 +67,13 @@ def bul(x, y):
         bul(x, y-1)
         visited[x][y-1] = 0
 
-
-
 def parcacik():
     global x
     global y
 
     matrix()
-    best = []
 
-    distance = 0
-
-    startnode = int(input("Lütfen bulunduğunuz konumu ifade eden, 1-16 arasında bir konum  değeri giriniz:"))
+    startnode = int(input("Lütfen bulunduğunuz konumu ifade eden, 1-16 arasında bir konum  değeri giriniz:\n"))
 
     if(startnode == 1):
         x=6
@@ -127,6 +132,37 @@ def parcacik():
                 bul(x,y)
                 break
         break
-
-
 parcacik()
+
+"""        if (visited[0][6] == 1):
+            best.append(16)
+        elif (visited[0][4] == 1):
+            best.append(15)
+        elif (visited[0][2] == 1):
+            best.append(14)
+        elif (visited[0][0] == 1):
+            best.append(13)
+        elif (visited[2][6] == 1):
+            best.append(12)
+        elif (visited[2][4] == 1):
+            best.append(11)
+        elif (visited[2][2] == 1):
+            best.append(10)
+        elif (visited[2][0] == 1):
+            best.append(9)
+        elif (visited[4][6] == 1):
+            best.append(8)
+        elif (visited[4][4] == 1):
+            best.append(7)
+        elif (visited[4][2] == 1):
+            best.append(6)
+        elif (visited[4][0] == 1):
+            best.append(5)
+        elif (visited[6][6] == 1):
+            best.append(4)
+        elif (visited[6][4] == 1):
+            best.append(3)
+        elif (visited[6][2] == 1):
+            best.append(2)
+        elif (visited[6][0] == 1):
+            best.append(1)"""
